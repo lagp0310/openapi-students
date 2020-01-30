@@ -1,0 +1,15 @@
+{
+  "name": "swagger-docs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  "scripts": {
+    "docs": "node main.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "license": "Unlicense"
+}
