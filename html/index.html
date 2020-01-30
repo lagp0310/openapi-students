@@ -1,0 +1,929 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Students API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Simple Students API</h1>
+    <div class="app-desc">Simple API to get, insert, update and delete Students.</div>
+    <div class="app-desc">More information: <a href="https://example.org">https://example.org</a></div>
+    <div class="app-desc">Contact Info: <a href="support@example.org">support@example.org</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/lagp0310/students-api/1.0.0</div>
+    <div class="license-info">MIT</div>
+    <div class="license-url">https://opensource.org/licenses/MIT</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Administrators">Administrators</a></h4>
+  <ul>
+  <li><a href="#deleteAllStudents"><code><span class="http-method">delete</span> /students</code></a></li>
+  <li><a href="#deleteStudentByID"><code><span class="http-method">delete</span> /students/{studentID}</code></a></li>
+  <li><a href="#getAllStudents"><code><span class="http-method">get</span> /students</code></a></li>
+  <li><a href="#getStudentByID"><code><span class="http-method">get</span> /students/{studentID}</code></a></li>
+  <li><a href="#insertStudent"><code><span class="http-method">post</span> /students</code></a></li>
+  <li><a href="#updateStudentByID"><code><span class="http-method">put</span> /students/{studentID}</code></a></li>
+  </ul>
+  <h4><a href="#RegularUsers">RegularUsers</a></h4>
+  <ul>
+  <li><a href="#getAllStudents"><code><span class="http-method">get</span> /students</code></a></li>
+  <li><a href="#getStudentByID"><code><span class="http-method">get</span> /students/{studentID}</code></a></li>
+  </ul>
+
+  <h1><a name="Administrators">Administrators</a></h1>
+  <div class="method"><a name="deleteAllStudents"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /students</code></pre></div>
+    <div class="method-summary">Deletes All Students. (<span class="nickname">deleteAllStudents</span>)</div>
+    <div class="method-notes">Deletes All Students.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;All Students were deleted.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    &lt;h3&gt;Bad Request.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Students were found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteStudentByID"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /students/{studentID}</code></pre></div>
+    <div class="method-summary">Deletes an existing Student. (<span class="nickname">deleteStudentByID</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Deletes an existing Student.&lt;/h3&gt;
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">studentID (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; &lt;h4&gt;The ID of the Student you&#x27;re looking for.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Student was Deleted.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    &lt;h3&gt;Bad Request.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Students Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAllStudents"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /students</code></pre></div>
+    <div class="method-summary">Gets All Students. (<span class="nickname">getAllStudents</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Get All Students.&lt;/h3&gt;
+</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Optional parameter to filter Students.&lt;/h4&gt;
+ </div>      <div class="param">skip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Number of Students to skip.&lt;/h4&gt;
+ format: int32</div>      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Maximum number of Students to be returned.&lt;/h4&gt;
+ format: int32</div>      <div class="param">sortBy (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Sort Students by one of their attributes.&lt;/h4&gt;
+&lt;h4&gt;&lt;strong&gt;Note&lt;/strong&gt;: If &lt;code&gt;sort&lt;/code&gt; is not present in query, &lt;strong&gt;ascending order&lt;/strong&gt; is assumed.&lt;/h4&gt;
+ </div>      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Sort Students Retrieved List.&lt;/h4&gt;
+&lt;h4&gt;&lt;strong&gt;Note&lt;/strong&gt;: It &lt;strong&gt;must&lt;/strong&gt; be used with &lt;code&gt;sortBy&lt;/code&gt;.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Student">Student</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+}, {
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Get all registered Students.&lt;/h3&gt;
+
+        
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Students Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStudentByID"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /students/{studentID}</code></pre></div>
+    <div class="method-summary">Get a Student by its ID. (<span class="nickname">getStudentByID</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Get a Student by its ID.&lt;/h3&gt;
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">studentID (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; &lt;h4&gt;The ID of the Student you&#x27;re looking for.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Student">Student</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Get a Student.&lt;/h3&gt;
+
+        <a href="#Student">Student</a>
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Student Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="insertStudent"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /students</code></pre></div>
+    <div class="method-summary">Creates a new Student. (<span class="nickname">insertStudent</span>)</div>
+    <div class="method-notes">Creates a new Student.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Student">Student</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Student to be created </div>
+                </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    &lt;h3&gt;Student Created.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    &lt;h3&gt;Bad Request.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    &lt;h3&gt;Student Already Exists.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    &lt;h3&gt;Unprocessable Entity.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateStudentByID"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /students/{studentID}</code></pre></div>
+    <div class="method-summary">Updates an existing Student. (<span class="nickname">updateStudentByID</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Updates an existing Student.&lt;/h3&gt;
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">studentID (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; &lt;h4&gt;The ID of the Student you want to edit.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#body">body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+            <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;name&quot; : &quot;Adam&quot;,
+  &quot;lastname&quot; : &quot;Smith&quot;,
+  &quot;email&quot; : &quot;student1@degree.edu&quot;,
+  &quot;birthdate&quot; : &quot;02-15-95&quot;,
+  &quot;degrees&quot; : &quot;Computer Science&quot;,
+  &quot;modified_at&quot; : &quot;2010-01-12T05:23:19+0000&quot;
+}</code></span></div>    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Successfully updateed Student.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    &lt;h3&gt;Bad Request.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    &lt;h3&gt;Student Already Exists.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Student Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RegularUsers">RegularUsers</a></h1>
+  <div class="method"><a name="getAllStudents"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /students</code></pre></div>
+    <div class="method-summary">Gets All Students. (<span class="nickname">getAllStudents</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Get All Students.&lt;/h3&gt;
+</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Optional parameter to filter Students.&lt;/h4&gt;
+ </div>      <div class="param">skip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Number of Students to skip.&lt;/h4&gt;
+ format: int32</div>      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Maximum number of Students to be returned.&lt;/h4&gt;
+ format: int32</div>      <div class="param">sortBy (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Sort Students by one of their attributes.&lt;/h4&gt;
+&lt;h4&gt;&lt;strong&gt;Note&lt;/strong&gt;: If &lt;code&gt;sort&lt;/code&gt; is not present in query, &lt;strong&gt;ascending order&lt;/strong&gt; is assumed.&lt;/h4&gt;
+ </div>      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; &lt;h4&gt;Sort Students Retrieved List.&lt;/h4&gt;
+&lt;h4&gt;&lt;strong&gt;Note&lt;/strong&gt;: It &lt;strong&gt;must&lt;/strong&gt; be used with &lt;code&gt;sortBy&lt;/code&gt;.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Student">Student</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+}, {
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Get all registered Students.&lt;/h3&gt;
+
+        
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Students Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getStudentByID"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /students/{studentID}</code></pre></div>
+    <div class="method-summary">Get a Student by its ID. (<span class="nickname">getStudentByID</span>)</div>
+    <div class="method-notes">&lt;h3&gt;Get a Student by its ID.&lt;/h3&gt;
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">studentID (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; &lt;h4&gt;The ID of the Student you&#x27;re looking for.&lt;/h4&gt;
+ </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Student">Student</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "birthdate" : "2000-01-23",
+  "name" : "Adam",
+  "created_at" : "2020-01-15T04:10:18+0000",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "modified_at" : "2020-01-15T04:20:54+0000",
+  "email" : "student@degree.edu",
+  "degrees" : [ {
+    "name" : "Computer Science"
+  }, {
+    "name" : "Computer Science"
+  } ],
+  "lastname" : "Smith"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    &lt;h3&gt;Get a Student.&lt;/h3&gt;
+
+        <a href="#Student">Student</a>
+    <h4 class="field-label">401</h4>
+    &lt;h3&gt;Unauthorized&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    &lt;h3&gt;Forbidden&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    &lt;h3&gt;No Student Found.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">429</h4>
+    &lt;h3&gt;Too Many Requests&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    &lt;h3&gt;Server Error.&lt;/h3&gt;
+
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    &lt;h3&gt;Default Error&lt;/h3&gt;
+
+        <a href="#DefaultResponseError">DefaultResponseError</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#DefaultResponseError"><code>DefaultResponseError</code></a></li>
+    <li><a href="#Degree"><code>Degree</code></a></li>
+    <li><a href="#Student"><code>Student</code></a></li>
+    <li><a href="#body"><code>body</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="DefaultResponseError"><code>DefaultResponseError</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">error </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Degree"><code>Degree</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">Computer Science</div><div class="param-enum">Biology</div><div class="param-enum">Math</div><div class="param-enum">Physics</div><div class="param-enum">Chemistry</div>
+          <div class="param-desc"><span class="param-type">example: Computer Science</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Student"><code>Student</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+          <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Adam</span></div>
+<div class="param">lastname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Smith</span></div>
+<div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+          <div class="param-desc"><span class="param-type">example: student@degree.edu</span></div>
+<div class="param">birthdate </div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+<div class="param">degrees </div><div class="param-desc"><span class="param-type"><a href="#Degree">array[Degree]</a></span>  </div>
+<div class="param">created_at </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: datetime</div>
+          <div class="param-desc"><span class="param-type">example: 2020-01-15T04:10:18+0000</span></div>
+<div class="param">modified_at </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: datetime</div>
+          <div class="param-desc"><span class="param-type">example: 2020-01-15T04:20:54+0000</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="body"><code>body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Adam</span></div>
+<div class="param">lastname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Smith</span></div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+          <div class="param-desc"><span class="param-type">example: student@degree.edu</span></div>
+<div class="param">birthdate (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+<div class="param">degrees (optional)</div><div class="param-desc"><span class="param-type"><a href="#Degree">array[Degree]</a></span>  </div>
+<div class="param">modified_at (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: datetime</div>
+          <div class="param-desc"><span class="param-type">example: 2020-01-15T04:20:54+0000</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
