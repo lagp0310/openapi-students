@@ -56,6 +56,13 @@ If you scroll down, you'll also see the response, which contains:
 
 ![GET Student by it's ID - Response](/screenshots/4.png "GET Student by it's ID - Response")
 
+## Project Structure.
+
+- [dynamic-html](/dynamic-html): API Dynamic Documentation which runs on a Node Server.
+- [html](/html): Simple HTML Documentation for the API.
+- [html2](/html2): Better HTML Documentation for the API.
+- [openapi](/openapi): API Definition (OpenAPI Document; JSON and YAML format).
+
 ## Documentation.
 
 Basically, you've everything on the [OpenAPI website](https://swagger.io/).
