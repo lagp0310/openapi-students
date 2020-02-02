@@ -1,0 +1,889 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Simple Students API",
+    "description" : "Simple API to get, insert, update and delete Students.",
+    "termsOfService" : "https://example.org",
+    "contact" : {
+      "name" : "Students OpenAPI Implementation",
+      "url" : "https://example.org",
+      "email" : "support@example.org"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "https://opensource.org/licenses/MIT"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/lagp0310/students-api/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "Administrators",
+    "description" : "**Operations available to Administrators Only.**"
+  }, {
+    "name" : "Regular Users",
+    "description" : "**Operations available to Regular Users.**"
+  } ],
+  "paths" : {
+    "/students" : {
+      "get" : {
+        "tags" : [ "Administrators", "Regular Users" ],
+        "summary" : "Gets All Students.",
+        "description" : "### Get All Students.",
+        "operationId" : "getAllStudents",
+        "parameters" : [ {
+          "name" : "filter",
+          "in" : "query",
+          "description" : "#### Optional parameter to filter Students.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "examples" : {
+            "name" : {
+              "summary" : "Filter by name.",
+              "value" : "name=mia"
+            },
+            "lastname" : {
+              "summary" : "Filter by lastname.",
+              "value" : "lastname=smith"
+            },
+            "nameAndLastname" : {
+              "summary" : "Filter by name and lastname.",
+              "description" : " See: [Query Parameters Serialization](https://swagger.io/docs/specification/serialization/).",
+              "value" : "name=mia&lastname=smith"
+            },
+            "birthdateEqualTo" : {
+              "summary" : "Filter by birthdate (equal to).",
+              "value" : "birthdate-equal=09-15-98"
+            },
+            "birthdateGreaterThan" : {
+              "summary" : "Filter by birthdate (greater than).",
+              "value" : "birthdate-gt=09-15-98"
+            },
+            "birthdateLessThan" : {
+              "summary" : "Filter by birthdate (less than).",
+              "value" : "birthdate-lt=09-15-98"
+            }
+          }
+        }, {
+          "name" : "skip",
+          "in" : "query",
+          "description" : "#### Number of Students to skip.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          },
+          "examples" : {
+            "skipFive" : {
+              "summary" : "Skip the first 5 Students.",
+              "value" : 5
+            },
+            "skipFifteen" : {
+              "summary" : "Skip the first 15 Students.",
+              "value" : 15
+            }
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "#### Maximum number of Students to be returned.",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "maximum" : 50.0,
+            "minimum" : 0,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          },
+          "examples" : {
+            "limitTen" : {
+              "summary" : "Get the first 10 Students.",
+              "value" : 10
+            },
+            "limitFifty" : {
+              "summary" : "Get the first 50 Students.",
+              "value" : 50
+            }
+          }
+        }, {
+          "name" : "sortBy",
+          "in" : "query",
+          "description" : " #### Sort Students by one of their attributes.\n#### **Note**: If ```sort``` is not present in query, **ascending order** is assumed. ",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "examples" : {
+            "name" : {
+              "summary" : "Sort by Student's name.",
+              "value" : "name"
+            },
+            "lastname" : {
+              "summary" : "Sort by Student's lastname.",
+              "value" : "lastname"
+            },
+            "birthdate" : {
+              "summary" : "Sort by Student's birthdate.",
+              "value" : "birthdate"
+            }
+          }
+        }, {
+          "name" : "sort",
+          "in" : "query",
+          "description" : " #### Sort Students Retrieved List.\n#### **Note**: It **must** be used with ```sortBy```. ",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "examples" : {
+            "nameAsc" : {
+              "summary" : "Sort by name in ascending order.",
+              "value" : "asc"
+            },
+            "nameDesc" : {
+              "summary" : "Sort by name in descending order.",
+              "value" : "desc"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "### Get all registered Students.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "### Unauthorized",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Not Authorized to make this Request."
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "### Forbidden",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Forbidden."
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "### No Students Found.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "No Students Found."
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "### Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Too Many Requests."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Administrators" ],
+        "summary" : "Creates a new Student.",
+        "description" : "Creates a new Student.",
+        "operationId" : "insertStudent",
+        "requestBody" : {
+          "description" : "Student to be created",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "### Student Created.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "message" : "Student Successfully Created."
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "### Bad Request.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Bad Request."
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "### Unauthorized",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Not Authorized to make this Request."
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "### Forbidden",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Forbidden."
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "### Student Already Exists.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Student Already Exists in our records."
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "### Unprocessable Entity.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Unprocessable Entity."
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "### Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Too Many Requests."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Administrators" ],
+        "summary" : "Deletes All Students.",
+        "description" : "Deletes All Students.",
+        "operationId" : "deleteAllStudents",
+        "responses" : {
+          "200" : {
+            "description" : "### All Students were deleted.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "message" : "Students were Successfully Deleted."
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "### Bad Request.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Bad Request."
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "### Unauthorized",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Not Authorized to make this Request."
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "### Forbidden",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Forbidden."
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "### No Students were found.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "No Students were found."
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "### Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Too Many Requests."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/{studentID}" : {
+      "get" : {
+        "tags" : [ "Administrators", "Regular Users" ],
+        "summary" : "Get a Student by its ID.",
+        "description" : "### Get a Student by its ID.",
+        "operationId" : "getStudentByID",
+        "parameters" : [ {
+          "name" : "studentID",
+          "in" : "path",
+          "description" : "#### The ID of the Student you're looking for.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "### Get a Student.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Student"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "### Unauthorized",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Not Authorized to make this Request."
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "### Forbidden",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Forbidden."
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "### No Student Found.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "No Student Found."
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "### Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Too Many Requests."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Administrators" ],
+        "summary" : "Updates an existing Student.",
+        "description" : "### Updates an existing Student.",
+        "operationId" : "updateStudentByID",
+        "parameters" : [ {
+          "name" : "studentID",
+          "in" : "path",
+          "description" : "#### The ID of the Student you want to edit.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body"
+              },
+              "example" : {
+                "name" : "Adam",
+                "lastname" : "Smith",
+                "email" : "student1@degree.edu",
+                "birthdate" : "02-15-95",
+                "degrees" : "Computer Science",
+                "modified_at" : "2010-01-12T05:23:19+0000"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "### Successfully updateed Student.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "message" : "Successfully updated Student."
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "### Bad Request.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Bad Request."
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "### Student Already Exists.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Student Already Exists in our records."
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "### No Student Found.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "No Student Found."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Administrators" ],
+        "summary" : "Deletes an existing Student.",
+        "description" : "### Deletes an existing Student.",
+        "operationId" : "deleteStudentByID",
+        "parameters" : [ {
+          "name" : "studentID",
+          "in" : "path",
+          "description" : "#### The ID of the Student you're looking for.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "### Student was Deleted.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "message" : "Student was deleted."
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "### Bad Request.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Bad Request."
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "### No Students Found.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "No Students Found."
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "### Server Error.",
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "error" : "Internal Server Error."
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "### Default Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DefaultResponseError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Degree" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Computer Science",
+            "enum" : [ "Computer Science", "Biology", "Math", "Physics", "Chemistry" ]
+          }
+        }
+      },
+      "Student" : {
+        "required" : [ "birthdate", "created_at", "degrees", "email", "id", "lastname", "modified_at", "name" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "pattern" : "^[a-zA-Z]+$",
+            "type" : "string",
+            "example" : "Adam"
+          },
+          "lastname" : {
+            "pattern" : "^[a-zA-Z]+$",
+            "type" : "string",
+            "example" : "Smith"
+          },
+          "email" : {
+            "type" : "string",
+            "format" : "email",
+            "example" : "student@degree.edu"
+          },
+          "birthdate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "degrees" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Degree"
+            }
+          },
+          "created_at" : {
+            "type" : "string",
+            "format" : "datetime",
+            "example" : "2020-01-15T04:10:18+0000"
+          },
+          "modified_at" : {
+            "type" : "string",
+            "format" : "datetime",
+            "example" : "2020-01-15T04:20:54+0000"
+          }
+        }
+      },
+      "DefaultResponseError" : {
+        "required" : [ "code", "error" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "error" : {
+            "type" : "string"
+          }
+        }
+      },
+      "body" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "pattern" : "^[a-zA-Z]+$",
+            "type" : "string",
+            "example" : "Adam"
+          },
+          "lastname" : {
+            "pattern" : "^[a-zA-Z]+$",
+            "type" : "string",
+            "example" : "Smith"
+          },
+          "email" : {
+            "type" : "string",
+            "format" : "email",
+            "example" : "student@degree.edu"
+          },
+          "birthdate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "degrees" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Degree"
+            }
+          },
+          "modified_at" : {
+            "type" : "string",
+            "format" : "datetime",
+            "example" : "2020-01-15T04:20:54+0000"
+          }
+        }
+      }
+    },
+    "responses" : {
+      "400" : {
+        "description" : "### Bad Request.",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Bad Request."
+            }
+          }
+        }
+      },
+      "401" : {
+        "description" : "### Unauthorized",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Not Authorized to make this Request."
+            }
+          }
+        }
+      },
+      "403" : {
+        "description" : "### Forbidden",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Forbidden."
+            }
+          }
+        }
+      },
+      "409" : {
+        "description" : "### Student Already Exists.",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Student Already Exists in our records."
+            }
+          }
+        }
+      },
+      "422" : {
+        "description" : "### Unprocessable Entity.",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Unprocessable Entity."
+            }
+          }
+        }
+      },
+      "429" : {
+        "description" : "### Too Many Requests",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Too Many Requests."
+            }
+          }
+        }
+      },
+      "500" : {
+        "description" : "### Server Error.",
+        "content" : {
+          "application/json" : {
+            "example" : {
+              "error" : "Internal Server Error."
+            }
+          }
+        }
+      },
+      "default" : {
+        "description" : "### Default Error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/DefaultResponseError"
+            }
+          }
+        }
+      }
+    }
+  }
+}
