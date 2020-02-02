@@ -26,11 +26,11 @@ When you go to [Students API.](https://app.swaggerhub.com/apis/lagp0310/students
 
 There you have three sections:
 
-- Options and Definition Specification on the **left**,
+- Options and API Specification on the **left**,
 - Editor in the **middle** and,
 - Automatically Generated Documentation for the API definition on the **right**.
 
-Scroll down to ```Regular Users - GET /students/{studentID}```. You'll see something like this:
+In the API Documentation, scroll down to ```Regular Users - GET /students/{studentID}```. You'll see something like this:
 
 ![GET Student by it's ID - Main](/screenshots/1.png "Get Student by it's ID - Main")
 
@@ -69,7 +69,7 @@ Also, the following are resources I used when writing this API:
 - [Swagger's GitHub Repository.](https://github.com/swagger-api)
 
 ## Authors.
-- Luis Guerrero.
+- Luis Alberto.
 
 ## License.
 This project is licensed under the MIT License - see the [License.md](LICENSE.md) file for details.
